@@ -54,4 +54,21 @@ class ListServiceTest {
         assertThat(actual, is(expected));
         assertThat(actual, containsInAnyOrder(item2, item1));
     }
+
+    @Test
+    @DisplayName("Returns Empty List")
+    void shouldReturnEmptyList() {
+        //GIVEN
+        val giveUser = "user";
+        List<Item> expected = List.of();
+        Optional<List<Item>> optionalList = Optional.of(expected);
+
+        when(itemDao.findAllBy(giveUser)).thenReturn(optionalList);
+        //WHEN
+        val actual = listService.getAllItems(giveUser);
+
+        //THEN
+        assertThat(actual, is(expected));
+        assert(actual.isEmpty());
+    }
 }
