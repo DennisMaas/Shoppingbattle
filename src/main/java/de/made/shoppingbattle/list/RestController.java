@@ -1,4 +1,4 @@
-package de.made.shoppingbattle.controller;
+package de.made.shoppingbattle.list.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
