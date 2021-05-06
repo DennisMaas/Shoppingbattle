@@ -2,6 +2,7 @@ package de.made.shoppingbattle.list.service;
 
 import de.made.shoppingbattle.list.dao.ItemDao;
 import de.made.shoppingbattle.list.model.Item;
+import de.made.shoppingbattle.list.model.ItemDto;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,7 @@ public class ListService{
     }
 
 
+    public Item addItem(ItemDto itemDto, String user) {
+        return null;
+    }
 }
