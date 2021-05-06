@@ -6,14 +6,12 @@ import lombok.val;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
@@ -36,5 +34,24 @@ class ListServiceTest {
 
         //THEN
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    @DisplayName("Returns two Items")
+    void shouldReturnTwoItems() {
+        //GIVEN
+        val giveUser = "user";
+        val item1 = Item.builder().amount(1).id("xcy").description("Bla").name("Pizza").build();
+        val item2 = Item.builder().amount(2).id("zab").description("Blub").name("Salami").build();
+        val expected = List.of(item1, item2);
+        val optionalList = Optional.of(expected);
+
+        when(itemDao.findAllBy(giveUser)).thenReturn(optionalList);
+        //WHEN
+        val actual = listService.getAllItems(giveUser);
+
+        //THEN
+        assertThat(actual, is(expected));
+        assertThat(actual, containsInAnyOrder(item2, item1));
     }
 }
