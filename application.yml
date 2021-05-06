@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: shoppingbattle
+      host: ${mongo.host}
+      port: ${mongo.port}
