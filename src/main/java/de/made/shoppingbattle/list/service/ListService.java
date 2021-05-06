@@ -2,6 +2,7 @@ package de.made.shoppingbattle.list.service;
 
 import de.made.shoppingbattle.list.dao.ItemDao;
 import de.made.shoppingbattle.list.model.Item;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,12 @@ public class ListService{
 
 
     public List<Item> getAllItems(String user){
-        return List.of();
+        val optionalList = itemDao.findAllBy(user);
+        if (optionalList.isPresent()) {
+            return optionalList.get();
+        } else {
+            return List.of();
+        }
     }
 
 
